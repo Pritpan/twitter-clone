@@ -17,7 +17,7 @@ const CreatePost = () => {
         </div>
       
       <div className='m-4'>
-        <div className='flex items-center p-4'>
+        <div className='flex items-center '>
             <div>
             <Avatar src= "https://pbs.twimg.com/profile_images/1949442857783246848/_bBzoqVZ_400x400.jpg " size="40" round={true} />
 
@@ -26,7 +26,7 @@ const CreatePost = () => {
         </div>
         <div className='flex items-center justify-between border-b border-gray-200 p-4'>
             <div>
-                <CiImageOn/>
+                <CiImageOn size={25} className='text-gray-500 cursor-pointer hover:text-blue-500' />
             </div>
             <button className='bg-blue-500 text-white px-4 py-2 rounded-full mt-4 text-right hover:bg-blue-600 font-bold'>
               Post  
