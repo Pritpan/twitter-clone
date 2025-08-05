@@ -1,6 +1,5 @@
 import bcryptjs from 'bcryptjs';
 import User from './../models/userSchema.js';
-import Tweet from './../models/tweetSchema.js';
 import jwt from 'jsonwebtoken';
 
 
