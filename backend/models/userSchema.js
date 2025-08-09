@@ -5,8 +5,9 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true }, 
     password: { type: String, required: true },
     name: { type: String, required: true },
-    followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-    following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    followers: {type: String, default: []},
+    following: {type: String, default: []},
+    
 }, {
   timestamps: true});
 const User = mongoose.model("User", userSchema);

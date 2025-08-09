@@ -2,8 +2,17 @@ import React from 'react'
 import { IoMdArrowBack } from "react-icons/io";
 import { Link } from 'react-router-dom';  
 import Avatar from 'react-avatar';
+import useGetProfile from '../hooks/useGetProfile';
+import { useSelector } from 'react-redux';
+
+
 const Profile = () => {
+  const {user, profile} = useSelector(store=>store.user);
+
+  useGetProfile(user?._id);
+
   return (
+
     <div className='w-[50%] border-l border-r border-gray-200 '>
       <div>
         <div className='flex items-center py-2'>
@@ -11,7 +20,7 @@ const Profile = () => {
             <IoMdArrowBack size={24} />
           </Link>
           <div className='ml-6'>
-            <h1 className='text-xl font-bold'>Pratik Pandey</h1>
+            <h1 className='text-xl font-bold'>{profile?.name}</h1>
             <p className='text-gray-500 text-sm'>Post 10</p>
           </div>
         </div>
@@ -23,8 +32,8 @@ const Profile = () => {
         <button className='px-4 py-2 bg-white-200 rounded-full hover:bg-gray-300 font-bold border'>Edit Profile</button>
       </div>
       <div className='m-4' >
-        <h1 className='text-xl font-bold'>Pratik Pandey</h1>
-        <p>@_pritpan</p>
+        <h1 className='text-xl font-bold'>{profile?.name}</h1>
+        <p>{`@${profile?.username}`}</p>
       </div>
       <div className='m-4 text-sm'>
         <p>
