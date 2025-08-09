@@ -4,7 +4,7 @@ const userSlice = createSlice({
   name: 'user',
   initialState:{
     user: null,
-    otherUser: null,
+    otherUsers: null,
     profile: null
   },
     reducers: {
@@ -12,7 +12,7 @@ const userSlice = createSlice({
             state.user = action.payload;
         },
         getOtherUser: (state, action) => {
-            state.otherUser = action.payload;
+            state.otherUsers = action.payload;
         },
         getMyProfile: (state, action) => {
           state.profile = action.payload;

@@ -5,8 +5,8 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true }, 
     password: { type: String, required: true },
     name: { type: String, required: true },
-    followers: {type: String, default: []},
-    following: {type: String, default: []},
+    followers: {type: Array, default: []},
+    following: {type: Array, default: []},
     
 }, {
   timestamps: true});

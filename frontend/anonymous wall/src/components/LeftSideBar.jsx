@@ -6,9 +6,13 @@ import { CiBookmark } from "react-icons/ci";
 import { CiLogout } from "react-icons/ci";
 import { CgProfile } from "react-icons/cg";
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 const LeftSideBar = () => {
+  const {user} = useSelector(store => store.user);
+
+
   return (
     <div className='w-[20%]'>
       <div>
@@ -34,7 +38,7 @@ const LeftSideBar = () => {
             </div>
             <h1 className='font-bold text lg ml-2'>Notification</h1>
          </div>
-         <Link to = "/profile" className = 'flex items-center my-2 px-4 py-2 hover:bg-gray-200 rounded-full hover:cursor-pointer'>
+         <Link to = {`profile/${user?._id}`} className = 'flex items-center my-2 px-4 py-2 hover:bg-gray-200 rounded-full hover:cursor-pointer'>
             <div> 
               <CgProfile  CiHoe size={'24px'}/>
             </div>

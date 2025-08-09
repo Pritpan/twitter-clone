@@ -1,15 +1,17 @@
 import React from 'react'
 import { IoMdArrowBack } from "react-icons/io";
-import { Link } from 'react-router-dom';  
+import { Link, useParams } from 'react-router-dom';  
 import Avatar from 'react-avatar';
 import useGetProfile from '../hooks/useGetProfile';
 import { useSelector } from 'react-redux';
 
 
-const Profile = () => {
-  const {user, profile} = useSelector(store=>store.user);
 
-  useGetProfile(user?._id);
+const Profile = () => {
+  const {user, profile} = useSelector(store => store.user);
+  const {id} = useParams();
+
+  useGetProfile(id);
 
   return (
 

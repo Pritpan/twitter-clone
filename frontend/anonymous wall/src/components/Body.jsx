@@ -13,11 +13,11 @@ const Body = () => {
           path : '/',
           element : <Feed/>
       },{
-          path : '/Profile',
+          path : 'profile/:id',
           element : <Profile/>
       }]},
       {
-          path : '/Login',
+          path : '/login',
           element : <Login/>
       }]
     );

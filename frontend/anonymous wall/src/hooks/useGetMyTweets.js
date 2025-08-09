@@ -1,26 +1,26 @@
 import axios from 'axios';
 import { useEffect} from 'react';
-import { USER_API_END_POINT } from '../utils/constant.js';
+import { Tweet_API_END_POINT } from '../utils/constant.js';
 import { useDispatch } from 'react-redux';
-import { getMyProfile } from '../redux/userSlice.js';
+import { getAlltweet } from '../redux/tweetSlice.js';
 
-const useGetProfile =  (id) => {
+const useGetMyTweets =  (id) => {
     const dispatch = useDispatch();
     useEffect(() => {
-        const fetchProfile = async ()=>{
+        const fetchMyTweets = async ()=>{
         try {
-            const res = await axios.get(`${USER_API_END_POINT}/profile/${id}` , { 
+            const res = await axios.get(`${Tweet_API_END_POINT}/alltweets/${id}` , { 
                 withCredentials: true,
             });
             console.log(res);
-                dispatch(getMyProfile(res?.data?.user));
+                dispatch(getAlltweet(res?.data?.tweets));
                 } catch (error) {
             console.error("Error fetching profile:", error);
         }
                
         }
-        fetchProfile();
+        fetchMyTweets();
     }, [id]);
 };
 
-export default useGetProfile;
+export default useGetMyTweets;
