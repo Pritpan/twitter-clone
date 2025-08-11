@@ -5,13 +5,33 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import { CiBookmark } from "react-icons/ci";
 import { CiLogout } from "react-icons/ci";
 import { CgProfile } from "react-icons/cg";
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios';
+import { USER_API_END_POINT } from '../utils/constant.js';
+import { getMyProfile, getOtherUser, getUser } from '../redux/userSlice';
+import toast from 'react-hot-toast';
 
 
 const LeftSideBar = () => {
   const {user} = useSelector(store => store.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  const logOutHandler = async () => {
+    try {
+      const res = await axios.get(`${USER_API_END_POINT}/logout`);
+        console.log(res);
+        dispatch(getMyProfile(null));
+        dispatch(getOtherUser(null));
+        dispatch(getUser(null));
+        navigate('/login');
+        toast.success("Logged out successfully");
+    } catch (error) {
+      console.error("Error logging out:", error);
+      toast.error("Failed to log out");
+    }
+  }
 
   return (
     <div className='w-[20%]'>
@@ -40,7 +60,7 @@ const LeftSideBar = () => {
          </div>
          <Link to = {`profile/${user?._id}`} className = 'flex items-center my-2 px-4 py-2 hover:bg-gray-200 rounded-full hover:cursor-pointer'>
             <div> 
-              <CgProfile  CiHoe size={'24px'}/>
+              <CgProfile size={'24px'}/>
             </div>
             <h1 className='font-bold text lg ml-2'>profile</h1>
          </Link>
@@ -50,7 +70,7 @@ const LeftSideBar = () => {
             </div>
             <h1 className='font-bold text lg ml-2'>Bookmarks</h1>
          </div>
-         <div className = 'flex items-center my-2 px-4 py-2 hover:bg-gray-200 rounded-full hover:cursor-pointer'>
+         <div onClick={logOutHandler} className = 'flex items-center my-2 px-4 py-2 hover:bg-gray-200 rounded-full hover:cursor-pointer'>
             <div> 
               <CiLogout size={'24px'}/>
             </div>

@@ -10,7 +10,7 @@ router.route('/logout').get(logoutUser);
 router.route("/bookmark/:id").put(isAuthenticated, bookmark)
 router.route("/profile/:id").get(isAuthenticated, getMyProfile);
 router.route("/otheruser/:id").get(isAuthenticated, getOtherUsers);
-router.route("/follow/:id").post(isAuthenticated, follow);
-router.route("/unfollow/:id").post(isAuthenticated, unfollow);
+router.route("/follow/:id").put(isAuthenticated, follow);
+router.route("/unfollow/:id").put(isAuthenticated, unfollow);
 
 export default router;

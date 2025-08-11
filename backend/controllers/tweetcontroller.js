@@ -8,10 +8,11 @@ export const createTweet = async (req, res) => {
         if(!description || !id) {
             return res.status(400).json({ message: "Description and ID are required" });
         }
-
+        const user = await User.findById(id).select("-password ");
         await Tweet.create({
             description,
-            userId:id
+            userId:id,
+            userDetails: user
         });
         return res.status(200).json({
             message: "tweet is created",
