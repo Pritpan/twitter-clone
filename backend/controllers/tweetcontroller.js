@@ -12,7 +12,6 @@ export const createTweet = async (req, res) => {
         await Tweet.create({
             description,
             userId:id,
-            userDetails: user
         });
         return res.status(200).json({
             message: "tweet is created",
@@ -64,9 +63,9 @@ export const getAllTweets = async (req,res) => {
     try {
         const id = req.params.id;
         const loggedInUser = await User.findById(id);
-        const loggedInUserTweets = await Tweet.find({userId:id});
+        const loggedInUserTweets = await Tweet.find({userId:id}).populate('userId', 'name username profilePhoto bannerPhoto');
         const followingUserTweet = await Promise.all(loggedInUser.following.map((otherUsersId)=>{
-            return Tweet.find({userId:otherUsersId});
+            return Tweet.find({userId:otherUsersId}).populate('userId', 'name username profilePhoto bannerPhoto');
         }));
         return res.status(200).json({
             tweets:loggedInUserTweets.concat(...followingUserTweet),
@@ -80,7 +79,7 @@ export const getFollowingTweets = async (req,res) =>{
         const id = req.params.id;
         const loggedInUser = await User.findById(id); 
         const followingUserTweet = await Promise.all(loggedInUser.following.map((otherUsersId)=>{
-            return Tweet.find({userId:otherUsersId});
+            return Tweet.find({userId:otherUsersId}).populate('userId', 'name username profilePhoto bannerPhoto');
         }));
         return res.status(200).json({
             tweets:[].concat(...followingUserTweet)

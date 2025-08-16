@@ -4,6 +4,7 @@ import Home from './Home';
 import Feed from './Feed';
 import Profile  from './Profile';
 import Login from './Login';
+import ProfileUpdate from './ProfileUpdate';
 
 const Body = () => {
   const appRouter = createBrowserRouter([{
@@ -15,10 +16,19 @@ const Body = () => {
       },{
           path : 'profile/:id',
           element : <Profile/>
-      }]},
+      },{
+          path : 'profile/:id/edit',
+          element : <ProfileUpdate/>
+      }
+
+    ]},
       {
           path : '/login',
           element : <Login/>
+      },
+      {
+          path : '/profile/:id/edit',
+          element : <ProfileUpdate/>
       }]
     );
 

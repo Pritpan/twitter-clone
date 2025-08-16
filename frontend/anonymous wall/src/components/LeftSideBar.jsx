@@ -33,6 +33,9 @@ const LeftSideBar = () => {
     }
   }
 
+  const postButton = () => {
+    navigate('/');}
+
   return (
     <div className='w-[20%]'>
       <div>
@@ -76,7 +79,7 @@ const LeftSideBar = () => {
             </div>
             <h1 className='font-bold text lg ml-2'>Logout</h1>
          </div>
-         <button className='bg-blue-500 text-white px-4 py-2 rounded-full w-full mt-4 hover:bg-blue-600 font-bold'>
+         <button onClick={postButton} className='bg-blue-500 text-white px-4 py-2 rounded-full w-full mt-4 hover:bg-blue-600 font-bold'>
            Post 
           </button>
          

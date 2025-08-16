@@ -9,11 +9,14 @@ import toast from 'react-hot-toast';
 import { getRefresh , getIsActive } from '../redux/tweetSlice.js';
 
 
+
 const CreatePost = () => {
 const {isActive} = useSelector(store => store.tweet);
   const {user} = useSelector(store => store.user);
 const [description, setDescription] = useState('');
 const dispatch = useDispatch();
+
+const {profile} = useSelector(store => store.user);
 
 const submithandeler =  async () => {
 try {
@@ -56,7 +59,7 @@ const followingHandler = () => {
       <div className='m-4'>
         <div className='flex items-center '>
             <div>
-            <Avatar src= "https://pbs.twimg.com/profile_images/1949442857783246848/_bBzoqVZ_400x400.jpg " size="40" round={true} />
+            <Avatar src= {user?.profilePhoto} size="40" round={true} />
 
             </div>
             <input value={description} onChange={(e)=>setDescription(e.target.value)} type="text" placeholder='What is happening?' className='w-full outline-none border-none text-lg ml-2' />

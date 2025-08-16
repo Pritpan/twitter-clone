@@ -50,11 +50,11 @@ const Tweet = ({tweet}) => {
     <div className='border-b border-gray-200'>
       <div>
       <div className='flex p-4'>
-        <Avatar src= "https://pbs.twimg.com/profile_images/1949442857783246848/_bBzoqVZ_400x400.jpg " size="40" round={true} />
+        <Avatar src= {tweet?.userId?.profilePhoto} size="40" round={true} />
      <div className='ml-2 w-full'>
      <div className='flex items-center'>
-        <h1 className='font-bold '>{ tweet?.userDetails?.[0]?.name}</h1>
-        <p className='text-gray-500 text-sm ml-1'>{`@${tweet?.userDetails?.[0]?.username} . ${timeSince(tweet?.createdAt)}`}</p>   
+        <h1 className='font-bold '>{ tweet?.userId?.name}</h1>
+        <p className='text-gray-500 text-sm ml-1'>{`@${tweet?.userId?.username} . ${timeSince(tweet?.createdAt)}`}</p>   
      </div>
      <div>
         <p className='text-gray-700 text-sm'>{ tweet?.description}</p>
@@ -76,7 +76,7 @@ const Tweet = ({tweet}) => {
             <div className='p-2 hover:bg-blue-200 rounded-full cursor-pointer'>
                <CiBookmark size={'20px'}/>
             </div>
-            <p>0</p>
+      
         </div>
         {
          user?._id === tweet?.userId && ( <div onClick={()=>deleteHandler(tweet?._id)} className='flex items-center'>
