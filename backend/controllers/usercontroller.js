@@ -19,7 +19,7 @@ export const registerUser = async (req, res) => {
         });}
 
     // Hash the password
-    const hashedPassword = await bcryptjs.hash(password, 16);
+    const hashedPassword = await bcryptjs.hash(password, 10);
 
     await User.create({
         username,
