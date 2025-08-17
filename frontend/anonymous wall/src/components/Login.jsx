@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
-import { USER_API_END_POINT } from '../utils/constant';
+import { USER_API } from '../utils/constant';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import {useDispatch} from 'react-redux';
@@ -20,7 +20,7 @@ const Login = () =>  {
     e.preventDefault();
     if(isLogin){
       try {
-        const res = await axios.post(`${USER_API_END_POINT}/login`, {
+        const res = await axios.post(`${USER_API}/login`, {
           email,
           password
         }, {
@@ -41,7 +41,7 @@ const Login = () =>  {
       }
     } else {
       try {
-        const res = await axios.post(`${USER_API_END_POINT}/register`, {
+        const res = await axios.post(`${USER_API}/register`, {
           name,
           username,
           email,

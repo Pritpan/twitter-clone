@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect} from 'react';
-import { TWEET_API_END_POINT } from '../utils/constant.js';
+import { TWEET_API} from '../utils/constant.js';
 import { useDispatch , useSelector } from 'react-redux';
 import { getAllTweet } from '../redux/tweetSlice.js';
 
@@ -12,7 +12,7 @@ const useGetMyTweets =  (id) => {
 
     const followingTweet = async () => {
         try {
-          const res = await axios.get(`${TWEET_API_END_POINT}/followingtweets/${id}`, {
+          const res = await axios.get(`${TWEET_API}/followingtweets/${id}`, {
             withCredentials: true,
           });
           dispatch(getAllTweet(res?.data?.tweets));
@@ -26,7 +26,7 @@ const useGetMyTweets =  (id) => {
         }
         const fetchMyTweets = async ()=>{
             try {
-                const res = await axios.get(`${TWEET_API_END_POINT}/alltweets/${id}` , { 
+                const res = await axios.get(`${TWEET_API}/alltweets/${id}` , { 
                     withCredentials: true,
                 });
                 

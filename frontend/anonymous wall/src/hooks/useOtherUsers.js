@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect} from 'react';
-import { USER_API_END_POINT } from '../utils/constant.js';
+import { USER_API } from '../utils/constant.js';
 import { useDispatch } from 'react-redux';
 import { getOtherUser } from '../redux/userSlice.js';
 
@@ -9,7 +9,7 @@ const useOtherUsers =  (id) => {
     useEffect(() => {
         const fetchOtherUser= async ()=>{
         try {
-            const res = await axios.get(`${USER_API_END_POINT}/otheruser/${id}` , { 
+            const res = await axios.get(`${USER_API}/otheruser/${id}` , { 
                 withCredentials: true,
             });
         

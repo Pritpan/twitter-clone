@@ -8,7 +8,7 @@ import { CgProfile } from "react-icons/cg";
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
-import { USER_API_END_POINT } from '../utils/constant.js';
+import { USER_API } from '../utils/constant.js';
 import { getMyProfile, getOtherUser, getUser } from '../redux/userSlice';
 import toast from 'react-hot-toast';
 
@@ -20,7 +20,7 @@ const LeftSideBar = () => {
 
   const logOutHandler = async () => {
     try {
-      const res = await axios.get(`${USER_API_END_POINT}/logout`);
+      const res = await axios.get(`${USER_API}/logout`);
         
         dispatch(getMyProfile(null));
         dispatch(getOtherUser(null));

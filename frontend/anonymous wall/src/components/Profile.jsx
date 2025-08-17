@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import Avatar from 'react-avatar';
 import { useSelector , useDispatch } from 'react-redux';
 import axios from 'axios';
-import { TWEET_API_END_POINT, USER_API_END_POINT } from '../utils/constant.js';
+import { TWEET_API, USER_API } from '../utils/constant.js';
 import { followingUpdate } from '../redux/userSlice';
 import { getRefresh } from '../redux/tweetSlice.js';
 import toast from 'react-hot-toast';
@@ -22,7 +22,7 @@ const Profile = () => {
 const followAndUnfollowHandler = async () => {
     if(user.following.includes(id)){
       try {
-        const res = await axios.put(`${USER_API_END_POINT}/unfollow/${id}`, {id:user?._id}, {
+        const res = await axios.put(`${USER_API}/unfollow/${id}`, {id:user?._id}, {
           withCredentials: true,
         });
         
@@ -36,7 +36,7 @@ const followAndUnfollowHandler = async () => {
       }
 }else{
   try {
-    const res = await axios.put(`${USER_API_END_POINT}/follow/${id}`, {id:user?._id}, {
+    const res = await axios.put(`${USER_API}/follow/${id}`, {id:user?._id}, {
       withCredentials: true,
     });
   

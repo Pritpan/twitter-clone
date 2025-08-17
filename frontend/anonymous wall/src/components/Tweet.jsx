@@ -6,7 +6,7 @@ import { CiBookmark } from "react-icons/ci";
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
-import { TWEET_API_END_POINT } from '../utils/constant.js';
+import { TWEET_API } from '../utils/constant.js';
 import { getRefresh } from '../redux/tweetSlice.js';
 import { MdDeleteOutline } from "react-icons/md";
 import {timeSince} from '../utils/constant.js';
@@ -17,7 +17,7 @@ const Tweet = ({tweet}) => {
 
    const likeOrDislikehandeler = async (id) => {
       try {
-         const res = await axios.put(`${TWEET_API_END_POINT}/like/${id}`, {id:user?._id},{
+         const res = await axios.put(`${TWEET_API}/like/${id}`, {id:user?._id},{
             withCredentials: true,
          });
             dispatch(getRefresh());
@@ -33,7 +33,7 @@ const Tweet = ({tweet}) => {
    const deleteHandler = async (id) => {
       try {
          axios.defaults.withCredentials = true;
-         const res = await axios.delete(`${TWEET_API_END_POINT}/delete/${id}`)
+         const res = await axios.delete(`${TWEET_API}/delete/${id}`)
          dispatch(getRefresh());
          toast.success(res.data.message);
          

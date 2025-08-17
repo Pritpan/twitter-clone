@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import { USER_API_END_POINT } from '../utils/constant';
+import { USER_API } from '../utils/constant';
 import toast from 'react-hot-toast';
 
 import { useParams, useNavigate } from 'react-router-dom';
@@ -125,7 +125,7 @@ const ProfileUpdate = () => {
       }
 
       // Send updated data to the backend
-      const res = await axios.put(`${USER_API_END_POINT}/updateprofile/${userId}`, {
+      const res = await axios.put(`${USER_API}/updateprofile/${userId}`, {
         name,
         bio,
         profilePhoto: uploadedProfilePhoto,

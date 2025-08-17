@@ -4,7 +4,7 @@ import { CiImageOn } from "react-icons/ci";
 import { useState } from 'react';
 import axios from 'axios';
 import { useSelector , useDispatch} from 'react-redux';
-import { TWEET_API_END_POINT } from '../utils/constant.js';
+import { TWEET_API } from '../utils/constant.js';
 import toast from 'react-hot-toast';
 import { getRefresh , getIsActive } from '../redux/tweetSlice.js';
 
@@ -20,7 +20,7 @@ const {profile} = useSelector(store => store.user);
 
 const submithandeler =  async () => {
 try {
-const res = await axios.post(`${TWEET_API_END_POINT}/create`, {description, id:user?._id}, {
+const res = await axios.post(`${TWEET_API}/create`, {description, id:user?._id}, {
   headers: {
     'Content-Type': 'application/json' },
   withCredentials: true
