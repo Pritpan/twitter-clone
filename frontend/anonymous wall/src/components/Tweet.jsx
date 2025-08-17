@@ -79,7 +79,7 @@ const Tweet = ({tweet}) => {
       
         </div>
         {
-         user?._id === tweet?.userId && ( <div onClick={()=>deleteHandler(tweet?._id)} className='flex items-center'>
+         user?._id === tweet?.userId?._id && ( <div onClick={()=>deleteHandler(tweet?._id)} className='flex items-center'>
             <div className='p-2 hover:bg-red-300 rounded-full cursor-pointer'>
                <MdDeleteOutline className='opacity-60' size={'20px'}/>
             </div>
