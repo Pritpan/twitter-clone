@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 const corsOptions = {
-  origin: "twitter-clone-pratik.vercel.app", 
+  origin: "https://twitter-clone-pratik.vercel.app", 
   credentials: true,
 };
 app.use(cors(corsOptions));
