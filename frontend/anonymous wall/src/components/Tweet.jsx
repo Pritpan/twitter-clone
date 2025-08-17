@@ -36,7 +36,7 @@ const Tweet = ({tweet}) => {
          const res = await axios.delete(`${TWEET_API_END_POINT}/delete/${id}`)
          dispatch(getRefresh());
          toast.success(res.data.message);
-         console.log('res');
+         
          
       } catch (error) {
          console.error("Error deleting tweet:", error);

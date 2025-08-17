@@ -29,7 +29,7 @@ const Login = () =>  {
         }
         , withCredentials: true
         });
-        console.log(res);
+        
         dispatch(getUser(res?.data?.user));
         if(res.data.success) {
           Navigate("/");
@@ -54,7 +54,7 @@ const Login = () =>  {
         withCredentials: true
       
       });
-      console.log(res);
+  
       if(res.data.success) {
         setIsLogin(true);
         toast.success(res.data.message);

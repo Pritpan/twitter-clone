@@ -21,7 +21,7 @@ const LeftSideBar = () => {
   const logOutHandler = async () => {
     try {
       const res = await axios.get(`${USER_API_END_POINT}/logout`);
-        console.log(res);
+        
         dispatch(getMyProfile(null));
         dispatch(getOtherUser(null));
         dispatch(getUser(null));

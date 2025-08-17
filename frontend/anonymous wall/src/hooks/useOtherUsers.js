@@ -12,7 +12,7 @@ const useOtherUsers =  (id) => {
             const res = await axios.get(`${USER_API_END_POINT}/otheruser/${id}` , { 
                 withCredentials: true,
             });
-            console.log(res);
+        
                 dispatch(getOtherUser(res?.data?.otherUsers));
                 } catch (error) {
             console.error("Error fetching profile:", error);

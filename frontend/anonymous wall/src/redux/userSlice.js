@@ -9,7 +9,7 @@ const userSlice = createSlice({
   },
     reducers: {
         getUser: (state, action) => {
-            console.log('Updating user state with:', action.payload); // Debugging log
+      
             state.user = action.payload;
         },
         getOtherUser: (state, action) => {

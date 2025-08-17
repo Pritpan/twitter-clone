@@ -17,7 +17,7 @@ const isAuthenticated = (req, res, next) => {
             );
         }
         const decoded = jwt.verify(token, process.env.TOKEN_SECRET);
-        console.log(decoded);
+       
         req.user = decoded.userId;
         next();
     }catch(error) {

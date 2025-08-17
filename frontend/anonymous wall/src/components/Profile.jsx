@@ -25,7 +25,7 @@ const followAndUnfollowHandler = async () => {
         const res = await axios.put(`${USER_API_END_POINT}/unfollow/${id}`, {id:user?._id}, {
           withCredentials: true,
         });
-        console.log(res);
+        
         dispatch(followingUpdate(id));
         dispatch(getRefresh());
         toast.success("Unfollowed successfully");
@@ -39,7 +39,7 @@ const followAndUnfollowHandler = async () => {
     const res = await axios.put(`${USER_API_END_POINT}/follow/${id}`, {id:user?._id}, {
       withCredentials: true,
     });
-    console.log(res);
+  
     dispatch(followingUpdate(id));
     dispatch(getRefresh());
     toast.success("Unfollowed successfully");

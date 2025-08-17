@@ -108,7 +108,7 @@ const ProfileUpdate = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Update Profile button clicked'); // Debugging log
+    
 
     try {
       let uploadedProfilePhoto = profilePhoto;
@@ -136,7 +136,7 @@ const ProfileUpdate = () => {
         },
         withCredentials: true,
       });
-      console.log('API response:', res.data);
+      
      
       dispatch(getUser(res.data.user));
     

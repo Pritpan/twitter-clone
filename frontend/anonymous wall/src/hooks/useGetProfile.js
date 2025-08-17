@@ -12,10 +12,10 @@ const useGetProfile =  (id) => {
             const res = await axios.get(`${USER_API_END_POINT}/profile/${id}` , { 
                 withCredentials: true,
             });
-            console.log(res);
+            
 
                 dispatch(getMyProfile(res?.data?.user));
-                console.log('Dispatching user data:', res?.data?.user); // Debugging log
+                
 
                 } catch (error) {
             console.error("Error fetching profile:", error);
