@@ -8,7 +8,10 @@ dotenv.config(
 
 const isAuthenticated = (req, res, next) => {
     try{
+        console.log("Cookies received:", req.cookies);
         const token = req.cookies.token;
+        console.log("Token from cookie:", token); // 👈 log here
+
         if(!token){
             return res.status(401).json({
                 message : "Unauthorized access, please login first",
@@ -17,8 +20,8 @@ const isAuthenticated = (req, res, next) => {
             );
         }
         const decoded = jwt.verify(token, process.env.TOKEN_SECRET);
-       
-        req.user = decoded.userId;
+       console.log("Decoded token:", decoded);
+        req.user = decoded.tokendata.userID;
         next();
     }catch(error) {
         console.log(error);

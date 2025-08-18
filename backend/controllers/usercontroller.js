@@ -60,8 +60,8 @@ export const loginUser = async (req, res) => {
       userID: user._id
     }
 
-    const token = await jwt.sign({tokendata}, process.env.TOKEN_SECRET, {expiresIn:"1d"}  );
-    return res.status(201).cookie("token", token , { expiresIn:"1d" , httponly: true , secure: true , sameSite:"None"}).json({
+    const token =  jwt.sign({tokendata}, process.env.TOKEN_SECRET, {expiresIn:"1d"}  );
+    return res.status(201).cookie("token", token , {  httpOnly: true , secure: false , sameSite:"None"}).json({
       message:`welcome back ${user.name}`,
       user,
        success: true
@@ -87,7 +87,7 @@ export const logoutUser = async (req, res) => {
 
 export const bookmark = async (req, res) => {
   try {
-      const loggedInUserId = req.body.id;
+      const loggedInUserId = req.user;
       const tweetId = req.params.id;
       const user = await User.findById(loggedInUserId);
       if (user.bookmarks.includes(tweetId)) {
@@ -109,8 +109,9 @@ export const bookmark = async (req, res) => {
 };
 export const getMyProfile = async (req, res) => {
   try {
-      const id = req.params.id;
-      const user = await User.findById(id).select("-password");
+      const loggedInUser = req.user;
+      const user = await User.findById(loggedInUser).select("-password");
+      console.log("Fetched user:", user);
       return res.status(200).json({
           user,
           message: "User profile fetched successfully",
@@ -123,8 +124,8 @@ export const getMyProfile = async (req, res) => {
 
 export const getOtherUsers = async (req,res) =>{ 
   try {
-       const {id} = req.params;
-       const otherUsers = await User.find({_id:{$ne:id}}).select("-password");
+       const loggedInUser = req.user;
+       const otherUsers = await User.find({_id:{$ne: loggedInUser}}).select("-password");
        if(!otherUsers){
           return res.status(401).json({
               message:"Currently do not have any users."
@@ -140,10 +141,24 @@ export const getOtherUsers = async (req,res) =>{
 
 export const follow = async(req,res)=>{
   try {
-      const loggedInUserId = req.body.id; 
+      const loggedInUserId = req.user; 
       const userId = req.params.id; 
+      if (!userId || loggedInUserId === userId) {
+        return res.status(400).json({
+          message: "Invalid operation: You cannot follow yourself.",
+          success: false,
+        });
+      }
       const loggedInUser = await User.findById(loggedInUserId);
       const user = await User.findById(userId);
+
+      if (!user) {
+        return res.status(404).json({
+          message: "User to follow not found.",
+          success: false,
+        });
+      }
+
       if(!user.followers.includes(loggedInUserId)){
           await user.updateOne({$push:{followers:loggedInUserId}});
           await loggedInUser.updateOne({$push:{following:userId}});
@@ -162,10 +177,24 @@ export const follow = async(req,res)=>{
 }
 export const unfollow = async (req,res) => {
   try {
-      const loggedInUserId = req.body.id; 
+      const loggedInUserId = req.user; 
       const userId = req.params.id; 
-      const loggedInUser = await User.findById(loggedInUserId);//patel
-      const user = await User.findById(userId);//keshav
+      if (!userId || loggedInUserId === userId) {
+        return res.status(400).json({
+          message: "Invalid operation: You cannot unfollow yourself.",
+          success: false,
+        });
+      }
+
+      const loggedInUser = await User.findById(loggedInUserId);
+      const user = await User.findById(userId);
+      if (!user) {
+        return res.status(404).json({
+          message: "User to unfollow not found.",
+          success: false,
+        });
+      }
+
       if(loggedInUser.following.includes(userId)){
           await user.updateOne({$pull:{followers:loggedInUserId}});
           await loggedInUser.updateOne({$pull:{following:userId}});
@@ -185,9 +214,9 @@ export const unfollow = async (req,res) => {
 
 export const updateProfile = async (req, res) => {
   try {
-    const {id} = req.params;
+    const loggedInUserId = req.user;
     const { name, profilePhoto, bio, bannerPhoto } = req.body;
-    const updateUser = await User.findByIdAndUpdate(id, 
+    const updateUser = await User.findByIdAndUpdate(loggedInUserId, 
       { name, profilePhoto, bio, bannerPhoto},
     {new: true});
     if(!updateUser) {
