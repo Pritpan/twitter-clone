@@ -4,12 +4,12 @@ import { USER_API } from '../utils/constant.js';
 import { useDispatch } from 'react-redux';
 import { getOtherUser } from '../redux/userSlice.js';
 
-const useOtherUsers =  (id) => {
+const useOtherUsers =  () => {
     const dispatch = useDispatch();
     useEffect(() => {
         const fetchOtherUser= async ()=>{
         try {
-            const res = await axios.get(`${USER_API}/otheruser/${id}` , { 
+            const res = await axios.get(`${USER_API}/otheruser` , { 
                 withCredentials: true,
             });
         
@@ -20,7 +20,7 @@ const useOtherUsers =  (id) => {
                
         }
         fetchOtherUser();
-    }, [id]);
+    }, [dispatch]);
 };
 
 export default useOtherUsers;

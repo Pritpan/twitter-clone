@@ -9,7 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { USER_API } from '../utils/constant.js';
-import { getMyProfile, getOtherUser, getUser } from '../redux/userSlice';
+import { getProfile, getOtherUser, getUser } from '../redux/userSlice';
 import toast from 'react-hot-toast';
 
 
@@ -22,7 +22,7 @@ const LeftSideBar = () => {
     try {
       const res = await axios.get(`${USER_API}/logout`);
         
-        dispatch(getMyProfile(null));
+        dispatch(getProfile(null));
         dispatch(getOtherUser(null));
         dispatch(getUser(null));
         navigate('/login');
@@ -61,7 +61,7 @@ const LeftSideBar = () => {
             </div>
             <h1 className='font-bold text lg ml-2'>Notification</h1>
          </div>
-         <Link to = {`profile/${user?._id}`} className = 'flex items-center my-2 px-4 py-2 hover:bg-gray-200 rounded-full hover:cursor-pointer'>
+         <Link to = {`/profile`} className = 'flex items-center my-2 px-4 py-2 hover:bg-gray-200 rounded-full hover:cursor-pointer'>
             <div> 
               <CgProfile size={'24px'}/>
             </div>

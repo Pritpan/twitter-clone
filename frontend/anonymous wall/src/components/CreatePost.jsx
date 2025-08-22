@@ -20,7 +20,7 @@ const {profile} = useSelector(store => store.user);
 
 const submithandeler =  async () => {
 try {
-const res = await axios.post(`${TWEET_API}/create`, {description, id:user?._id}, {
+const res = await axios.post(`${TWEET_API}/create`, {description}, {
   headers: {
     'Content-Type': 'application/json' },
   withCredentials: true

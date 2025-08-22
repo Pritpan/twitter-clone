@@ -14,11 +14,15 @@ const Body = () => {
           path : '/',
           element : <Feed/>
       },{
-          path : 'profile/:id',
+          path : '/profile/:id',
           element : <Profile/>
       },{
-          path : 'profile/:id/edit',
+          path : '/profile/edit',
           element : <ProfileUpdate/>
+      },
+      {
+          path : '/profile',
+          element : <Profile/>
       }
 
     ]},
@@ -27,7 +31,7 @@ const Body = () => {
           element : <Login/>
       },
       {
-          path : '/profile/:id/edit',
+          path : '/profile/edit',
           element : <ProfileUpdate/>
       }]
     );

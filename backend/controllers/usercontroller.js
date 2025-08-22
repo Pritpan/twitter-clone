@@ -122,6 +122,26 @@ export const getMyProfile = async (req, res) => {
   }
 };
 
+export const getProfile = async (req, res) => {
+  try {
+      const userId = req.params.id;
+      const user = await User.findById(userId).select("-password");
+      if (!user) {
+          return res.status(404).json({
+              message: "User not found",
+              success: false
+          });
+      }
+      return res.status(200).json({
+          user,
+          message: "User profile fetched successfully",
+          success: true
+      });
+  } catch (error) {
+      console.log(error);
+  }
+}
+
 export const getOtherUsers = async (req,res) =>{ 
   try {
        const loggedInUser = req.user;

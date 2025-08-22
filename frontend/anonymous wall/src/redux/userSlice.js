@@ -15,7 +15,7 @@ const userSlice = createSlice({
         getOtherUser: (state, action) => {
             state.otherUsers = action.payload;
         },
-        getMyProfile: (state, action) => {
+        getProfile: (state, action) => {
           state.profile = action.payload;
         },
         followingUpdate: (state, action) => {
@@ -28,5 +28,5 @@ const userSlice = createSlice({
         state.user.following.push(action.payload)
       } 
       }});
-export const {getUser, getOtherUser, getMyProfile , followingUpdate} = userSlice.actions;
+export const {getUser, getOtherUser, getProfile , followingUpdate} = userSlice.actions;
 export default userSlice.reducer;

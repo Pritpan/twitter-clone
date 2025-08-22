@@ -125,7 +125,7 @@ const ProfileUpdate = () => {
       }
 
       // Send updated data to the backend
-      const res = await axios.put(`${USER_API}/updateprofile/${userId}`, {
+      const res = await axios.put(`${USER_API}/updateprofile`, {
         name,
         bio,
         profilePhoto: uploadedProfilePhoto,
@@ -141,7 +141,7 @@ const ProfileUpdate = () => {
       dispatch(getUser(res.data.user));
     
       toast.success(res.data.message);
-      navigate(`/profile/${userId}`); // Redirect to the profile page after update
+      navigate(`/profile`) // Redirect to the profile page after update
     } catch (error) {
       toast.error('Error updating profile');
       console.error('Error updating profile:', error);

@@ -1,4 +1,4 @@
-export const USER_API = "https://twitter-clone-backend-7p41.onrender.com/api/v1/user" ;
+export const USER_API = "https://twitter-clone-backend-7p41.onrender.com/api/v1/user";
 export const TWEET_API = "https://twitter-clone-backend-7p41.onrender.com/api/v1/tweet";
 
 export const timeSince = (timestamp) => {
