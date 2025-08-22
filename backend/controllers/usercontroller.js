@@ -111,7 +111,7 @@ export const getMyProfile = async (req, res) => {
   try {
       const loggedInUser = req.user;
       const user = await User.findById(loggedInUser).select("-password");
-      console.log("Fetched user:", user);
+      
       return res.status(200).json({
           user,
           message: "User profile fetched successfully",
